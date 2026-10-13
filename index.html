@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Jev — an AI model advisor for VS Code</title>
+    <meta
+      name="description"
+      content="Jev is an early-stage VS Code extension that helps developers choose an appropriate AI model for a coding task, with a fit score and explainable findings. It advises; it does not act on its own."
+    />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#0e1517" />
+    <link rel="icon" type="image/svg+xml" href="assets/jev.svg" />
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="shell header-inner">
+        <a class="brand" href="#top" aria-label="Jev home">
+          <img
+            class="brand-mark"
+            src="assets/jev.svg"
+            alt=""
+            width="32"
+            height="32"
+            aria-hidden="true"
+          />
+          <span class="brand-text">
+            <span class="brand-name" translate="no">Jev</span>
+            <span class="brand-by">by <span translate="no">BlackEyeTech</span></span>
+          </span>
+        </a>
+
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="primary-nav"
+          data-nav-toggle
+        >
+          <span class="nav-toggle-bars" aria-hidden="true"></span>
+          <span class="sr-only">Menu</span>
+        </button>
+
+        <nav class="primary-nav" id="primary-nav" aria-label="Primary" data-nav>
+          <ul class="nav-list">
+            <li><a href="#how">How it works</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#workflow">Workflow</a></li>
+            <li><a href="#install">Install</a></li>
+            <li><a href="#limits">Limitations</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- Hero -->
+      <section class="hero" id="top" aria-labelledby="hero-title">
+        <div class="shell hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">
+              <span class="dot" aria-hidden="true"></span>
+              <span translate="no">BlackEyeTech</span> &middot; first product &middot; early-stage
+            </p>
+            <h1 id="hero-title">Choose the right AI model for the task in front of you.</h1>
+            <p class="lede">
+              <span translate="no">Jev</span> is a VS Code extension that reads the coding task you
+              describe and the small slice of project context around it, then recommends an
+              appropriate AI model. It shows a <strong>fit score</strong> and the
+              <strong>findings behind it</strong>, so the decision is yours to make with reasons,
+              not a black box.
+            </p>
+            <p class="hero-note">
+              Jev is an advisor. It does not switch models for you, edit your files, or run coding
+              tasks on its own.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#how">See how it works</a>
+              <a class="btn btn-secondary" href="https://github.com/Dawit749/jev" rel="noopener"
+                >View repository</a
+              >
+            </div>
+            <dl class="hero-facts">
+              <div class="fact">
+                <dt>Runs in</dt>
+                <dd>VS Code</dd>
+              </div>
+              <div class="fact">
+                <dt>Provides</dt>
+                <dd>Fit scores &amp; findings</dd>
+              </div>
+              <div class="fact">
+                <dt>Control</dt>
+                <dd>Stays with you</dd>
+              </div>
+            </dl>
+          </div>
+
+          <!-- Proof object: an illustrative advisor panel -->
+          <figure class="advisor">
+            <div class="advisor-chrome">
+              <span class="advisor-title" translate="no">Jev</span>
+              <span class="badge-demo">Illustrative demo</span>
+            </div>
+
+            <div class="advisor-body">
+              <p class="advisor-label">Task</p>
+              <p class="advisor-task">
+                Review the authentication change for architecture and security issues before I
+                extend it.
+              </p>
+
+              <p class="advisor-label">Model fit</p>
+              <ul class="fit-list">
+                <li class="fit">
+                  <span class="fit-name" translate="no">Claude</span>
+                  <span class="fit-bar" aria-hidden="true"
+                    ><span class="fit-fill" style="--fill: 91%"></span
+                  ></span>
+                  <span class="fit-score">91</span>
+                </li>
+                <li class="fit">
+                  <span class="fit-name" translate="no">GPT</span>
+                  <span class="fit-bar" aria-hidden="true"
+                    ><span class="fit-fill is-dim" style="--fill: 84%"></span
+                  ></span>
+                  <span class="fit-score">84</span>
+                </li>
+                <li class="fit">
+                  <span class="fit-name" translate="no">Gemini</span>
+                  <span class="fit-bar" aria-hidden="true"
+                    ><span class="fit-fill is-dim" style="--fill: 79%"></span
+                  ></span>
+                  <span class="fit-score">79</span>
+                </li>
+              </ul>
+
+              <p class="advisor-label">Finding</p>
+              <div class="finding">
+                <p class="finding-head">
+                  <span class="sev">Architecture</span>
+                  <span class="conf">Confidence: moderate</span>
+                </p>
+                <p class="finding-text">
+                  Password policy and persistence live in the API controller rather than a service
+                  layer.
+                </p>
+                <p class="finding-evidence">Evidence: <code>src/api/authController.ts</code></p>
+              </div>
+            </div>
+
+            <figcaption class="advisor-foot">
+              Illustrative demo built for this page. Not a real screenshot. Scores shown are
+              <span translate="no">Jev</span> fit scores for the task, not provider benchmarks.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- How it works -->
+      <section class="section" id="how" aria-labelledby="how-title">
+        <div class="shell">
+          <header class="section-head">
+            <p class="kicker">How it works</p>
+            <h2 id="how-title">Four steps, and you keep the wheel</h2>
+            <p class="section-lede">
+              Jev sits beside your editor and answers one question well: which model suits this
+              task, and why.
+            </p>
+          </header>
+
+          <ol class="steps">
+            <li class="step">
+              <span class="step-num" aria-hidden="true">1</span>
+              <h3>Describe the task</h3>
+              <p>Type what you are about to do in plain language, right in the Jev sidebar.</p>
+            </li>
+            <li class="step">
+              <span class="step-num" aria-hidden="true">2</span>
+              <h3>Collect a small context</h3>
+              <p>
+                Jev gathers only what is relevant: the current file, your selection, and a light
+                project structure. It keeps that context minimal.
+              </p>
+            </li>
+            <li class="step">
+              <span class="step-num" aria-hidden="true">3</span>
+              <h3>Analyze and recommend</h3>
+              <p>
+                Jev evaluates the task and produces a ranked model recommendation with fit scores,
+                using a supported provider you have configured.
+              </p>
+            </li>
+            <li class="step">
+              <span class="step-num" aria-hidden="true">4</span>
+              <h3>Review the reasoning</h3>
+              <p>
+                Open a finding to see its evidence, the recommendation, and a short explanation of
+                why. Accept, dismiss, or ask for more.
+              </p>
+            </li>
+          </ol>
+
+          <p class="callout">
+            <span class="callout-mark" aria-hidden="true">!</span>
+            Jev recommends and explains. It never changes your model, your files, or your code on
+            its own.
+          </p>
+        </div>
+      </section>
+
+      <!-- Features -->
+      <section class="section section-alt" id="features" aria-labelledby="features-title">
+        <div class="shell">
+          <header class="section-head">
+            <p class="kicker">Features</p>
+            <h2 id="features-title">What Jev does</h2>
+            <p class="section-lede">
+              A focused set of capabilities for the decision layer around AI-assisted coding.
+            </p>
+          </header>
+
+          <ul class="feature-grid">
+            <li class="feature">
+              <h3>Model fit scores</h3>
+              <p>
+                A ranked recommendation for your task. Scores express how well a model fits the
+                task, not a provider benchmark.
+              </p>
+            </li>
+            <li class="feature">
+              <h3>Explainable findings</h3>
+              <p>
+                Every significant finding carries its evidence, a recommendation, and a plain
+                reason. Confidence is a product signal, not a probability of correctness.
+              </p>
+            </li>
+            <li class="feature">
+              <h3>Minimal context</h3>
+              <p>
+                Jev sends as little as it can: the current file, your selection, and a light project
+                tree. Keys stay on the server, never in the extension.
+              </p>
+            </li>
+            <li class="feature">
+              <h3>Non-blocking findings</h3>
+              <p>
+                Findings surface in a quiet notification with Review, Why, and Dismiss. Repeated
+                findings are throttled, so Jev does not spam you.
+              </p>
+            </li>
+            <li class="feature">
+              <h3>Provider integration</h3>
+              <p>
+                Jev can integrate with supported model providers that you configure. Not every
+                provider or model is available, and only the configured one is invoked.
+              </p>
+            </li>
+            <li class="feature">
+              <h3>You stay in control</h3>
+              <p>
+                The developer decides. Jev never takes an action on your behalf without your
+                explicit say-so.
+              </p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Example workflow -->
+      <section class="section" id="workflow" aria-labelledby="workflow-title">
+        <div class="shell">
+          <header class="section-head">
+            <p class="kicker">Example workflow</p>
+            <h2 id="workflow-title">One task, start to finish</h2>
+            <p class="section-lede">
+              This walkthrough follows the sample project that ships with the repository.
+            </p>
+          </header>
+
+          <div class="workflow">
+            <ol class="workflow-steps">
+              <li>
+                <span class="wf-key">Open</span> a project in VS Code and open
+                <span translate="no">Jev</span> from the activity bar.
+              </li>
+              <li>
+                <span class="wf-key">Focus</span> the file you are about to change, for example
+                <code>src/api/authController.ts</code>.
+              </li>
+              <li><span class="wf-key">Enter</span> the task in plain language:</li>
+            </ol>
+
+            <pre
+              class="code-block"
+            ><code>Review the authentication change for architecture and security issues before I extend it.</code></pre>
+
+            <ol class="workflow-steps workflow-steps-continued" start="4">
+              <li>
+                <span class="wf-key">Read</span> the model recommendation and the finding, then open
+                <strong>Review</strong> and <strong>Why</strong> to see the evidence.
+              </li>
+              <li>
+                <span class="wf-key">Decide</span>. Accept the recommendation, dismiss the finding,
+                or ask for more explanation.
+              </li>
+            </ol>
+
+            <div class="result-card">
+              <p class="result-label">What a finding looks like (illustrative demo)</p>
+              <p class="result-title">Business rules and persistence in the controller</p>
+              <p class="result-meta">
+                <span class="sev">Architecture</span>
+                <span>Affected: <code>src/api/authController.ts</code></span>
+              </p>
+              <p class="result-why">
+                <strong>Why:</strong> password policy and storage sit in the API controller while a
+                service layer exists but goes unused, which couples transport to business rules.
+              </p>
+            </div>
+
+            <p class="fine-print">
+              The demo project is intentionally inconsistent so a finding has something real to
+              describe. Wording from a live model varies, and the exact result depends on the
+              provider you have configured.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Installation -->
+      <section class="section section-alt" id="install" aria-labelledby="install-title">
+        <div class="shell">
+          <header class="section-head">
+            <p class="kicker">Installation</p>
+            <h2 id="install-title">Try it from source today</h2>
+            <p class="section-lede">
+              Jev is early-stage. There is no public release yet: the
+              <strong>VS Code Marketplace listing and a download are coming soon</strong>. You can
+              run it from the repository in the meantime.
+            </p>
+          </header>
+
+          <div class="install-grid">
+            <div class="install-steps">
+              <h3>Run it locally</h3>
+              <ol class="numbered">
+                <li>Clone the repository and install dependencies.</li>
+                <li>Create a <code>.env</code> from the example and set your provider key.</li>
+                <li>Start the local server, then launch the extension host.</li>
+              </ol>
+              <pre class="code-block"><code>git clone https://github.com/Dawit749/jev.git
+cd jev
+npm install
+cp .env.example .env
+npm run dev:server</code></pre>
+              <p class="fine-print">
+                Requires Node.js 20 or newer. The server binds to the loopback address only.
+                Provider keys stay in the server environment and are never handed to the extension.
+              </p>
+            </div>
+
+            <aside class="release-note" aria-labelledby="release-title">
+              <h3 id="release-title">Release status</h3>
+              <ul class="status-list">
+                <li><span class="pill pill-soon">Coming soon</span> Public release instructions</li>
+                <li><span class="pill pill-soon">Coming soon</span> Marketplace listing</li>
+                <li><span class="pill pill-ready">Available</span> Source on GitHub</li>
+              </ul>
+              <a
+                class="btn btn-secondary btn-block"
+                href="https://github.com/Dawit749/jev"
+                rel="noopener"
+                >Open the repository</a
+              >
+              <p class="fine-print">
+                <span translate="no">Dawit749/jev</span> is the product website repository. The
+                extension source lives alongside it.
+              </p>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- Limitations -->
+      <section class="section" id="limits" aria-labelledby="limits-title">
+        <div class="shell">
+          <header class="section-head">
+            <p class="kicker">Limitations</p>
+            <h2 id="limits-title">What Jev is not</h2>
+            <p class="section-lede">
+              Honest limits, stated up front. Jev is a small, early-stage advisor, and it says so.
+            </p>
+          </header>
+
+          <ul class="limits-list">
+            <li>
+              <strong>An advisor, not an autonomous coder.</strong> Jev does not write or edit your
+              files, and does not run coding tasks for you.
+            </li>
+            <li>
+              <strong>No automatic model switching.</strong> Jev does not change the model in your
+              editor's selector or touch editor internals.
+            </li>
+            <li>
+              <strong>Findings are recommendations.</strong> They are guidance grounded in the files
+              they cite, not guaranteed truths. Review them before you act.
+            </li>
+            <li>
+              <strong>Only the configured provider is used.</strong> Other models can appear as fit
+              comparisons and are marked as not connected. Not every provider or model is available.
+            </li>
+            <li>
+              <strong>Early-stage software.</strong> Interfaces and behavior may change, and live
+              end-to-end verification through the extension host is still in progress.
+            </li>
+            <li>
+              <strong>No invented proof.</strong> There are no customers, downloads, benchmarks, or
+              certifications to show yet, and Jev does not claim any.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section class="section section-alt" id="contact" aria-labelledby="contact-title">
+        <div class="shell contact">
+          <div>
+            <p class="kicker">Contact &amp; feedback</p>
+            <h2 id="contact-title">Tell us where Jev gets it wrong</h2>
+            <p class="section-lede">
+              Jev is in early development, and feedback shapes it. Bug reports, confusing findings,
+              and missing use cases are all useful.
+            </p>
+          </div>
+          <div class="contact-actions">
+            <a class="btn btn-primary" href="https://github.com/Dawit749/jev/issues" rel="noopener"
+              >Open an issue</a
+            >
+            <a class="btn btn-secondary" href="https://github.com/Dawit749/jev" rel="noopener"
+              >Browse the source</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="shell footer-inner">
+        <div class="footer-brand">
+          <img src="assets/jev.svg" alt="" width="28" height="28" aria-hidden="true" />
+          <p>
+            <span class="brand-name" translate="no">Jev</span>
+            <span class="footer-sub"
+              >An AI model advisor for VS Code, by <span translate="no">BlackEyeTech</span>.</span
+            >
+          </p>
+        </div>
+        <nav class="footer-nav" aria-label="Footer">
+          <a href="#how">How it works</a>
+          <a href="#features">Features</a>
+          <a href="#install">Install</a>
+          <a href="#limits">Limitations</a>
+          <a href="https://github.com/Dawit749/jev" rel="noopener">Repository</a>
+        </nav>
+        <p class="footer-note">
+          Early-stage software. This page is the <span translate="no">Jev</span> product website and
+          makes no claims about availability, performance, or security certification.
+        </p>
+      </div>
+    </footer>
+
+    <script src="assets/site.js" defer></script>
+  </body>
+</html>
